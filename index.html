@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="Real Estate Agent in Lagos, Nigeria." />
+  <title>MORE | Maximillian Oghenetega Real Estate</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="icon" type="image/img/More_logo-removebg-preview.png" href="img/More_logo-removebg-preview.png" class="">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --green: #0b3d2e;
+      --black: #000000;
+      --gold: #d4af37;
+      --soft-white: #f4f4ef;
+      --glass: rgba(244, 244, 239, 0.1);
+      --glass-border: rgba(244, 244, 239, 0.28);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--black);
+      color: var(--soft-white);
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand,
+    .section-title {
+      font-family: "Playfair Display", serif;
+      letter-spacing: 0.01em;
+    }
+
+    .section-padding {
+      padding: 5rem 1.25rem;
+    }
+
+    .max-width {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      transition: background-color 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.72)),
+        url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      transform: translateY(16px);
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards;
+      animation-delay: 0.25s;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.15;
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(244, 244, 239, 0.88);
+      max-width: 650px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+      border: 1px solid transparent;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .btn-primary:hover {
+      background: #e2c465;
+    }
+
+    .btn-outline {
+      border-color: rgba(244, 244, 239, 0.65);
+      color: var(--soft-white);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .section-header {
+      margin-bottom: 2.25rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+    }
+
+    .section-subtitle {
+      color: rgba(244, 244, 239, 0.75);
+      max-width: 700px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .video-item {
+      overflow: hidden;
+      border-radius: 14px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .video-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .video-item video {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-meta {
+      padding: 0.85rem 1rem 1rem;
+    }
+
+    .media-meta h3 {
+      color: #fff;
+      font-size: 1.05rem;
+    }
+
+    .media-meta p {
+      color: rgba(244, 244, 239, 0.75);
+      font-size: 0.95rem;
+    }
+
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .property-card {
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .property-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212, 175, 55, 0.45);
+    }
+
+    .property-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .property-content {
+      padding: 1.1rem;
+    }
+
+    .price {
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .location {
+      color: rgba(244, 244, 239, 0.75);
+      margin-bottom: 0.5rem;
+    }
+
+    .desc {
+      color: rgba(244, 244, 239, 0.86);
+      margin-bottom: 1rem;
+    }
+
+    .about-text {
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+      color: rgba(244, 244, 239, 0.9);
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .service-item {
+      border-radius: 14px;
+      padding: 1.1rem;
+      min-height: 130px;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .service-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .testimonial-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      min-height: 230px;
+    }
+
+    .testimonial-track {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+
+    .testimonial {
+      min-width: 100%;
+      padding: 2rem;
+    }
+
+    .testimonial p {
+      font-size: 1.1rem;
+      color: rgba(244, 244, 239, 0.92);
+      margin-bottom: 1rem;
+    }
+
+    .testimonial strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(244, 244, 239, 0.6);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.9rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(244, 244, 239, 0.22);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--soft-white);
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(212, 175, 55, 0.65);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+    }
+
+    .contact-form textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .footer {
+      border-top: 1px solid rgba(244, 244, 239, 0.15);
+      padding: 2rem 1.25rem;
+      color: rgba(244, 244, 239, 0.78);
+    }
+
+    .socials {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--soft-white);
+      border: 1px solid rgba(244, 244, 239, 0.25);
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .whatsapp-btn {
+      position: fixed;
+      right: 1.1rem;
+      bottom: 1.1rem;
+      z-index: 60;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #1fa463;
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      transition: transform 0.25s ease;
+    }
+
+    .whatsapp-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    [data-animate].in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+
+      .video-grid,
+      .properties-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .section-padding {
+        padding: 4rem 1rem;
+      }
+
+      .video-grid,
+      .properties-grid,
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav" id="navbar">
+    <div class="max-width flex items-center justify-between px-5 py-4">
+      <a href="#home"><img src="img/More_logo-removebg-preview (1).png" alt="logo image" class="h-25"></a>
+
+      <nav>
+        <ul class="flex items-center gap-5 text-sm md:text-base">
+          <li><a href="#home" class="hover:text-[#d4af37] transition-colors">Home</a></li>
+          <li><a href="#properties" class="hover:text-[#d4af37] transition-colors">Properties</a></li>
+          <li><a href="#videos" class="hover:text-[#d4af37] transition-colors">Gallery</a></li>
+          <li><a href="#about" class="hover:text-[#d4af37] transition-colors">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="max-width section-padding w-full">
+      <div class="hero-content">
+        <p class="uppercase tracking-[0.18em] text-xs md:text-sm text-[#d4af37] mb-4">MORE Real Estate Services</p>
+        <h1 class="mb-5">Sophisticated Real Estate. Smart Investments.</h1>
+        <p class="mb-7">Helping you discover premium properties and profitable investments. <br>
+          Location: 7 Osayemi Street, Ogba, Ikeja, Lagos state.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#properties" class="btn btn-primary">View Properties</a>
+          <a href="https://wa.link/j3z4lx" class="btn btn-outline">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos" class="section-padding">
+    <div class="max-width" data-animate>
+      <div class="section-header">
+        <h2 class="section-title">Property Video Gallery</h2>
+        <p class="section-subtitle">Explore premium homes and investment opportunities through curated walkthrough
+          clips.</p>
+      </div>
+      <div class="video-grid">
+        <article class="video-item glass">
+          <video muted loop playsinline preload="none" poster="img/MORE SOLACE.jpeg">
+            <source src="img/MORE VIDEO BETTER.mp4" type="video/mp4" />
+          </video>
+          <div class="media-meta">
+            <h3>Solace City Bungalow</h3>
+            <p>Ibeju Lekki, Lagos</p>
+            <a href="https://wa.link/d3s6um"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="video-item glass">
+          <video muted loop playsinline preload="none" poster="img/MORE OMG 3.jpeg">
+            <source src="img/MORE MONARCH VIDEO.mp4" type="video/mp4" />
+          </video>
+          <div class="media-meta">
+            <h3>The Monarch Residence</h3>
+            <p>Emuren Ikorodu, Lagos</p>
+            <a href="https://wa.link/7e2uxn"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="video-item glass">
+          <video muted loop playsinline preload="none" poster="img/MORE EMERALD .jpeg">
+            <source src="img/MORE EMERALD VIDEO.mp4" type="video/mp4" />
+          </video>
+          <div class="media-meta">
+            <h3>Emerald Lake View</h3>
+            <p>Beechwood Estate, Bogije Lagos.</p>
+            <a href="https://wa.link/kvn64f"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="video-item glass">
+          <video muted loop playsinline preload="none" poster="img/MORE PARADISO.jpeg">
+            <source src="img/MORE PARADISO VIDEO.mp4" type="video/mp4" />
+          </video>
+          <div class="media-meta">
+            <h3>Paradiso by Boulevard</h3>
+            <p>Beechwood Estate, Bogije Lagos.</p>
+            <a href="https://wa.link/tabvgk"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="video-item glass">
+          <video muted loop playsinline preload="none" poster="img/MORE AIRVIEW.jpeg">
+            <source src="img/MORE AIRVIEW VIDEO.mp4" type="video/mp4" />
+          </video>
+          <div class="media-meta">
+            <h3>Airview Estate</h3>
+            <p>Lekki Epe international Airport, Lagos</p>
+            <a href="https://wa.link/00zc8e"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="video-item glass">
+          <video muted loop playsinline preload="none" poster="img/MORE CIVIC RESIDENCE.jpeg">
+            <source src="img/MORE CIVIC RESIDENCE VIDEO.mp4" type="video/mp4" />
+          </video>
+          <div class="media-meta">
+            <h3>Civic Residence</h3>
+            <p>Abraham Adesanya, Lagos</p>
+            <a href="https://wa.link/h8pftn"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="properties" class="section-padding" style="background: rgba(11, 61, 46, 0.2)">
+    <div class="max-width" data-animate>
+      <div class="section-header">
+        <h2 class="section-title">Featured Properties</h2>
+        <p class="section-subtitle">Handpicked listings that blend exceptional lifestyle value with long-term investment
+          strength.</p>
+      </div>
+      <div class="properties-grid">
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE EMERALD .jpeg" alt="Emerald lakeView property" />
+          <div class="property-content">
+            <p class="price">#55,000,000.</p>
+            <p class="location">Beechwood Estate, Bogije Lagos.</p>
+            <p class="desc">EMERALD LAKEVIEW 5.0 IS NOT ORDINARY!
+
+              Home is more than a structure. It's the quiet confidence of waking up in a space created for your peace.
+              It's choosing
+              calm over chaos, nature over noise, and intention over routine.
+
+              Here at Emerald Lakeview we dont do ordinary, we build communities that support the life you're growing
+              into.
+              Thoughtfully planned, deeply rooted, and designed to help you slow down, live fully, and thrive daily.
+              Because the right
+              home does more than shelter you. It shapes your everyday experience.
+
+              NB: 300SQM serviced plots are currently available at ₦55M (All Inclusive)</p>
+
+            <a href="https://wa.link/kvn64f"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE CIVIC RESIDENCE.jpeg" alt="Civic Residence property" />
+          <div class="property-content">
+            <p class="price">#85,000,000</p>
+            <p class="location">Civic Residence, Abraham Adesanya.</p>
+            <p class="desc">A well-planned residential estate offering
+
+              LOCATION-
+              •Atlantic Nominee Layout
+              •Abraham Adesanya, by Lekki Gardens Phase 5, Ajah
+
+              Available Units:
+              Semi-finished Units
+              * 3 Bedroom Semi-Detached Duplex: N85,000,000
+
+              * 3 Bedroom Fully Detached Duplex: N125,000,000
+
+              * 3 Bedroom fully Detached Bungalow: N70,000,000
+
+              * 4 Bedroom Penthouse: N95,000,000
+
+              Finished Units
+              * 3 Bedroom Semi-Detached Duplex: N120,000,000
+
+              * 3 Bedroom fully Detached Duplex: N160,000,000
+
+              * 3 Bedroom fully Detached Bungalow: 110,000,000
+
+              * 4 Bedroom Penthouse: N130,000,000
+
+              * Initial Deposit: N15,000,000
+              & N.B: Mortgage Plan Available</p>
+            <a href="https://wa.link/h8pftn"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE OMG 3.jpeg" alt="The Monarch Residence" />
+          <div class="property-content">
+            <p class="price">#4,000,000.</p>
+            <p class="location">The Monarch Residence</p>
+            <p class="desc">Oh yes!!
+              Less than 2 weeks of purchase,
+              Our clients got allocated at MONARCH RESIDENCE Emuren, Ikorodu.
+
+              I love to work with developers that understands effective delivery.
+              💃</p>
+            <a href="https://wa.link/7e2uxn"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE AYHOMES 4 BEDROOM .jpeg" alt="AYHOMES LUXURY BUNGALOW" />
+          <div class="property-content">
+            <p class="price">#70,000,000.</p>
+            <p class="location">AYHOMES LUXURY BUNGALOW</p>
+            <p class="desc">Welcome to a lifestyle where elegance meets comfort. Discover our 4-Bedroom Fully Detached
+              Bungalows in Igando,
+              Ibeju-Lekki — where elegance, comfort, and innovation meet. More than a home, it’s your lifestyle upgrade.
+
+              At Ayhomes Luxury Bungalow, we don’t just build houses — we craft timeless spaces designed for relaxation,
+              class, and
+              the joy of truly calling a place home.
+
+              Stay tuned for more details as we bring you insights on the upcoming projects
+
+              AyHomes Investment Ltd
+
+              CARCASS PRICE:
+              ₦60M – 4 Bedroom Fully Detached – (Current Price)
+              ₦70M – 4 Bedroom Fully Detached -(New Price)
+              FINISHED PRICE:
+              ₦70M – 4 Bedroom Fully Detached – (Current Price)
+              ₦80M – 4 Bedroom Fully Detached – (New Price)
+              Price Increase 🔔
+              From Sept 15, 2025.
+              N15M – Intial Deposit</p>
+            <a href="https://wa.link/03ldhd"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE CHARIS COURT PHOTO.jpeg" alt="Charis Court Epe Property " />
+          <div class="property-content">
+            <p class="price">#25,000,000.</p>
+            <p class="location">CHARIS COURT EPE</p>
+            <p class="desc">NEW PRICE, SAME PRESTIGE! SECURE YOUR PLOT AT CHARIS COURT NOW!
+
+              Exciting news! The value at Charis Court, Epe just went higher and so should your investment goals!
+              Strategically
+              located in the heart of Epe Town, this premium estate in the Boulevard Series is the perfect place to
+              build your dream
+              home or grow your investment portfolio.
+
+              Now selling at N15M for 300 SQM and N25M for 500 SQM, Charis Court is a Buy & Build property with a
+              registered
+              Certificate of Occupancy (C of O) giving you immediate development access and long-term security.
+
+              Don’t wait until the next price increase. Secure your plot today!</p>
+            <a href="https://wa.link/2qvfx8"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE KAMBILI LUXURY PHOTO.jpeg" alt="The Kambili Residence" />
+          <div class="property-content">
+            <p class="price">#30,000,000.</p>
+            <p class="location">The Kambili Residence/p>
+            <p class="desc">Step into luxury this season with Kambili Luxury Estate by Ay Homes Investment Limited —
+              where class meets
+              comfort.
+
+              Now selling at a special Ember Promo Price of ₦20,000,000 (All Inclusive)!
+
+              Kambili Luxury Estate offers you that dream! Located off Lekki-Epe Expressway, Ilamija Eyin Osa, this
+              premium estate is
+              designed for those who value comfort, class, and long-term investment potential.
+
+              INTIAL DEPOSIT: 5 MILLION
+              Promo Price: 500SQM – 30M (All Inclusive)</p>
+            <a href="https://wa.link/in6d4e"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE LIBERTY ISLAND PHOTO.jpeg" alt="The Liberty land property" />
+          <div class="property-content">
+            <p class="price">#5,000,000.</p>
+            <p class="location">The Liberty island</p>
+            <p class="desc">LIBERTY ISLAND
+
+              Looking for an affordable land investment in Lagos with solid future returns? Look no further!
+
+              Liberty Island by AyHomes is now selling at an unbeatable pre-launch price of N5M for 500SQM.
+
+              This is your golden opportunity to own land in a fast-developing area with excellent infrastructure –
+              whether you’re
+              building your dream home or investing for the future.
+
+              PRE-LUANCH PRICE – N5M
+              INTIAL DEPOSIT – N1M
+            </p>
+            <a href="https://wa.link/ris6rl"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE OPULENT UPDATE.jpg" alt="The Opulence Luxury" />
+          <div class="property-content">
+            <p class="price">#55,000,000.</p>
+            <p class="location">Opulence Luxury</p>
+            <p class="desc">Opulent Luxury, the one of a kind Estate located in ogombo, close to abraham adesanya. now
+              is the time to secure yours!</p>
+            <a href="https://wa.link/nlz4dz"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE SOLACE CITY BUNGALOW  PHOTO.jpeg" alt="The Solace City Bungalow" />
+          <div class="property-content">
+            <p class="price">#121,500,000.</p>
+            <p class="location">Solace Commercial – Premium Location, Premium Title, Premium Returns
+              Positioned in the heart of Chevron Drive, Lekki, Solace Commercial is a landmark development tailored for
+              forward-thinking investors seeking secure documentation, strategic positioning, and high-yield
+              opportunities. This
+              estate stands out not only for its enviable location but also for its double-title protection—holding both
+              a Certificate
+              of Occupancy (C of O) and Governor’s Consent, ensuring your investment is 100% legally recognized,
+              dispute-free, and
+              future-proof.
+
+              Property Options & Pricing
+              300sqm – Now ₦121,500,000 (Previously ₦135,000,000)
+              600sqm –Now ₦220,500,000 (Previously ₦245,000,000)
+              Initial Deposit: ₦30,000,000
+              Flexible Payment Plans: Available
+            </p>
+            <a href="https://wa.link/c63jwx"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE THE EAGLE AYHOMES.jpeg" alt="The Monarch Residence" />
+          <div class="property-content">
+            <p class="price">#4,000,000.</p>
+            <p class="location">THE EAGLE AYHOMES</p>
+            <p class="desc">FUTURE OF LUXURY LIVING
+
+              Where comfort meets class — and your dream land awaits.
+
+              Secure your future with a prime real estate opportunity that combines value, comfort, and long-term
+              potential.
+
+              Nestled within a serene and secure environment, it offers a perfect blend of luxury, comfort, and
+              convenience.
+
+              Designed for discerning homeowners and investors, this estate is thoughtfully planned.
+
+              LOCATION
+              Ibeju-lekki, Express-way lagos ikeja.
+              PRICE: 500SQM – N50M (ALL INCLUSIVE)</p>
+            <a href="https://wa.link/iwrwf6"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE IMG 5.jpeg" alt="The Akunuaba Estate" />
+          <div class="property-content">
+            <p class="price">#2,500,000.</p>
+            <p class="location">The Akunuaba Estate</p>
+            <p class="desc">An Estate that will meet your needs, invest in what will genrate youbwealth.</p>
+            <a href="https://wa.link/fo6vhn"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE VERA APARTMEMENT PHOTO.jpeg" alt="The Vera Apartment" />
+          <div class="property-content">
+            <p class="price">#29,500,000.</p>
+            <p class="location">The Vera Apartments</p>
+            <p class="desc">It is Time, vera Apartments all the way.. here's a chance to have the best!</p>
+            <a href="https://wa.link/3hwu3f"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+        <article class="property-card glass">
+          <img class="property-image" src="img/MORE VISTA CITY PHOTO.jpeg" alt="The Vista city" />
+          <div class="property-content">
+            <p class="price">#40,000,000.</p>
+            <p class="location">The Vista City</p>
+            <p class="desc">Vista City is here, here is a chance to obtain your reserved plot, one of a kind property,,
+              Simply the best!</p>
+            <a href="https://wa.link/1g2v84"><button class="btn btn-outline">Know more</button></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section-padding">
+    <div class="max-width" data-animate>
+      <div class="section-header text-center">
+        <h2 class="section-title">About MORE</h2>
+      </div>
+      <p class="about-text">
+        MORE (Maximillian Oghenetega Real Estate) delivers high-trust real estate solutions for discerning individuals,
+        families, and investors. We combine market intelligence, strategic advisory, and premium property access to help
+        clients secure assets that appreciate in value and elevate lifestyle.
+      </p>
+    </div>
+  </section>
+
+  <section id="services" class="section-padding" style="background: rgba(11, 61, 46, 0.2)">
+    <div class="max-width" data-animate>
+      <div class="section-header">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">End-to-end expertise crafted for premium real estate transactions and portfolio
+          growth.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-item glass">
+          <h3>Property Sales</h3>
+        </article>
+        <article class="service-item glass">
+          <h3>Property Investment Advisory</h3>
+        </article>
+        <article class="service-item glass">
+          <h3>Land Acquisition</h3>
+        </article>
+        <article class="service-item glass">
+          <h3>Real Estate Marketing</h3>
+        </article>
+        <article class="service-item glass">
+          <h3>Property Management</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="section-padding">
+    <div class="max-width" data-animate>
+      <div class="section-header">
+        <h2 class="section-title">Client Testimonials</h2>
+        <p class="section-subtitle">Trusted by investors and homeowners who value precision, discretion, and exceptional
+          results.</p>
+      </div>
+      <div class="testimonial-wrap glass">
+        <div class="testimonial-track" id="testimonialTrack">
+          <article class="testimonial">
+            <p>"MORE guided my investment portfolio with unmatched clarity. I secured two properties that appreciated
+              faster than projected."</p>
+            <strong>Chioma A. | Investor</strong>
+          </article>
+          <article class="testimonial">
+            <p>"From negotiation to closing, the process was seamless and professional. Their knowledge of luxury
+              districts is exceptional."</p>
+            <strong>Tunde E. | Homeowner</strong>
+          </article>
+          <article class="testimonial">
+            <p>"I needed a trustworthy advisory partner for land acquisition, and MORE delivered strategic options with
+              clear ROI potential."</p>
+            <strong>Hassan M. | Entrepreneur</strong>
+          </article>
+        </div>
+      </div>
+      <div class="dots" id="testimonialDots" aria-label="Testimonial Navigation">
+        <button class="dot active" aria-label="Go to testimonial 1"></button>
+        <button class="dot" aria-label="Go to testimonial 2"></button>
+        <button class="dot" aria-label="Go to testimonial 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="max-width flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <div>
+        <p class="brand text-2xl text-white">MORE</p>
+        <p>Maximillian Oghenetega Real Estate</p>
+        <p>Email: oghenetegaobata@gmail.com | Phone: +234 905 502 7097</p>
+        <p></p>
+
+      </div>
+    </div>
+    <div class="max-width mt-5 text-sm">
+      <p>&copy; <span id="year"></span> MORE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.link/j3z4lx" class="whatsapp-btn" aria-label="Chat on WhatsApp" title="WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path
+        d="M20.52 3.48A11.8 11.8 0 0 0 12.06 0C5.54 0 .24 5.3.24 11.83c0 2.09.55 4.14 1.6 5.94L0 24l6.39-1.67a11.82 11.82 0 0 0 5.66 1.44h.01c6.52 0 11.82-5.3 11.83-11.83a11.77 11.77 0 0 0-3.37-8.46ZM12.06 21.77h-.01a9.88 9.88 0 0 1-5.03-1.38l-.36-.21-3.79.99 1.01-3.7-.23-.38a9.84 9.84 0 0 1-1.51-5.26C2.14 6.4 6.64 1.9 12.06 1.9a9.85 9.85 0 0 1 6.96 2.88 9.8 9.8 0 0 1 2.89 6.96c0 5.42-4.41 9.93-9.85 9.93Zm5.4-7.42c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.93 1.17-.17.2-.35.22-.65.08-.3-.15-1.26-.46-2.41-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.47.13-.62.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.91-2.19-.24-.58-.49-.5-.66-.5h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.71.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z" />
+    </svg>
+  </a>
+
+  <script>
+    const navbar = document.getElementById("navbar");
+    const videos = document.querySelectorAll(".video-item video");
+    const animatedSections = document.querySelectorAll("[data-animate]");
+    const testimonialTrack = document.getElementById("testimonialTrack");
+    const dots = document.querySelectorAll(".dot");
+    let currentIndex = 0;
+    let carouselInterval;
+
+    const updateNavbar = () => {
+      if (window.scrollY > 24) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    };
+
+    const setupVideoHover = () => {
+      videos.forEach((video) => {
+        video.addEventListener("mouseenter", () => {
+          video.play().catch(() => { });
+        });
+        video.addEventListener("mouseleave", () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+      });
+    };
+
+    const showTestimonial = (index) => {
+      currentIndex = index;
+      testimonialTrack.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+    };
+
+    const startCarousel = () => {
+      carouselInterval = setInterval(() => {
+        const nextIndex = (currentIndex + 1) % dots.length;
+        showTestimonial(nextIndex);
+      }, 4500);
+    };
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        clearInterval(carouselInterval);
+        showTestimonial(index);
+        startCarousel();
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    animatedSections.forEach((section) => observer.observe(section));
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    updateNavbar();
+    setupVideoHover();
+    startCarousel();
+
+    window.addEventListener("scroll", updateNavbar);
+  </script>
+</body>
+
+</html>
